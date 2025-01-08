@@ -1,0 +1,42 @@
+<h1 class="main-title">Technician Schedule</h1>
+
+<div class="schedule-grid">
+  <!-- Time Labels (rows) -->
+  <div class="time-labels">
+    <% (0..23).each do |hour| %>
+      <div class="time-label">
+        <%= "#{hour}:00" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Technician Columns -->
+  <div class="technician-columns">
+    <% @technicians.each do |technician| %>
+      <div class="technician-column">
+        <div class="technician-name">
+          <%= technician.name %>
+        </div>
+        
+        <!-- Time Slots (blocks) -->
+        <% (0..23).each do |hour| %>
+          <div class="time-slot">
+            <!-- Check if there's a work order in this time slot -->
+            <% work_order = @work_orders_by_technician[technician.id].find { |wo| wo.start_time.hour == hour } %>
+            
+            <% if work_order %>
+              <div class="work-order-block">
+                <div class="work-order-location">
+                  <%= work_order.location.name %> - <%= work_order.location.city %>
+                </div>
+                <div class="work-order-info">
+                  <%= work_order.start_time.strftime("%H:%M") %> - <%= work_order.start_time + work_order.duration_minutes.minutes %> (Price: <%= work_order.price %>)
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
