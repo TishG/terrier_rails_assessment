@@ -1,12 +1,12 @@
 namespace :csv do
   desc "Load data from a CSV file into the database"
   task import: :environment do
-    require 'csv'
+    require "csv"
 
     csv_files = {
-      locations: 'lib/csv/locations.csv',
-      technicians: 'lib/csv/technicians.csv',
-      work_orders: 'lib/csv/work_orders.csv'
+      locations: "lib/csv/locations.csv",
+      technicians: "lib/csv/technicians.csv",
+      work_orders: "lib/csv/work_orders.csv"
     }
 
     csv_files.each do |model, file_path|
