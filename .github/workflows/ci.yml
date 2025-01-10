@@ -19,6 +19,9 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Ensure brakeman is executable
+        run: chmod +x bin/brakeman
+
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
@@ -35,6 +38,9 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Ensure importmap is executable
+        run: chmod +x bin/importmap
+
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
 
@@ -50,11 +56,11 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Install Rubocop
-        run: bundle install
-
       - name: Verify Ruby installation
         run: ruby -v
+
+      - name: Install Rubocop
+        run: bundle install
 
       - name: Ensure rubocop is executable
         run: chmod +x bin/rubocop
@@ -93,6 +99,9 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+
+      - name: Ensure bin/rails is executable
+        run: chmod +x bin/rails
 
       - name: Run tests
         env:
