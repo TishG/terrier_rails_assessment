@@ -50,6 +50,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Install Rubocop
+      run: bundle install
+
+      - name: Verify Ruby installation
+        run: ruby -v
+
       - name: Ensure rubocop is executable
         run: chmod +x bin/rubocop
 
