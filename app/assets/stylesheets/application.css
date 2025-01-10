@@ -1,7 +1,7 @@
-* {
+body {
 	font-family: sans-serif;
-	background-color: #faf9f6;
 	color: #36454f;
+	background-color: #faf9f6;
 }
 
 .main-title {
@@ -24,7 +24,8 @@
 }
 
 .time-label {
-	height: 50px;
+	height: 60px;
+	padding: 10px 0;
 	text-align: center;
 	border-bottom: 1px solid #eee;
 	display: flex;
@@ -56,10 +57,17 @@
 }
 
 .time-slot {
-	height: 50px;
+	height: 60px;
+	padding: 10px 0;
 	border-bottom: 1px solid #eee;
 	border-right: 1px solid #eee;
 	position: relative;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.time-slot:hover {
+	background-color: #eae9e5;
 }
 
 .work-order-block {
@@ -72,7 +80,15 @@
 	padding: 5px;
 	border: 1px solid #eee;
 	border-radius: 5px;
-	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	transition: background-color 0.3s ease;
+	z-index: 1;
+}
+
+.work-order-block:hover {
+	background-color: #d0e4f2;
 }
 
 .work-order-location {

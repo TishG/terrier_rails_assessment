@@ -5,7 +5,7 @@
   <div class="time-labels">
     <% (0..23).each do |hour| %>
       <div class="time-label">
-        <%= "#{hour}:00" %>
+        <%= Time.new(2025, 1, 1, hour).strftime("%I:%M %p") %>
       </div>
     <% end %>
   </div>
@@ -20,17 +20,19 @@
         
         <!-- Time Slots (blocks) -->
         <% (0..23).each do |hour| %>
-          <div class="time-slot">
+            <div class="time-slot <%= @work_orders_by_technician[technician.id].none? { |wo| wo.time.hour == hour } ? 'empty' : '' %>" data-hour="<%= hour %>" data-technician-id="<%= technician.id %>">
+
             <!-- Check if there's a work order in this time slot -->
-            <% work_order = @work_orders_by_technician[technician.id].find { |wo| wo.start_time.hour == hour } %>
-            
+            <% work_order = @work_orders_by_technician[technician.id].detect { |wo| wo.time.hour == hour } %>
+
             <% if work_order %>
-              <div class="work-order-block">
+              <div class="work-order-block" data-duration="<%= work_order.duration %>" data-time="<%= work_order.time %>">
                 <div class="work-order-location">
                   <%= work_order.location.name %> - <%= work_order.location.city %>
                 </div>
                 <div class="work-order-info">
-                  <%= work_order.start_time.strftime("%H:%M") %> - <%= work_order.start_time + work_order.duration_minutes.minutes %> (Price: <%= work_order.price %>)
+                  <%= work_order.time.strftime("%I:%M %p") %> - <%= (work_order.time + work_order.duration.minutes).strftime("%I:%M %p") %> 
+                  Price: $<%= work_order.price %>
                 </div>
               </div>
             <% end %>
@@ -40,3 +42,9 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  window.workOrdersByTechnician = <%= @work_orders_by_technician.to_json.html_safe %>;
+</script>
+
+<%= javascript_include_tag 'schedule' %>
