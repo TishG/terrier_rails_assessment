@@ -51,7 +51,7 @@ jobs:
           bundler-cache: true
 
       - name: Install Rubocop
-      run: bundle install
+        run: bundle install
 
       - name: Verify Ruby installation
         run: ruby -v
