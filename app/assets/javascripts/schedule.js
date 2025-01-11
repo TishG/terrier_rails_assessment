@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		if (duration) {
 			// Calculate height
 			const height = (duration / 60) * baseHeight;
-			console.log({ height });
 			block.style.height = `${height > 70 ? height + 10 : height}px`;
 
 			// Calculate the margin-top based on start time (minutes past the hour)
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			technicianWorkOrders.forEach(function (workOrder, index) {
 				var workOrderTime = new Date(workOrder.time);
-				console.log({ workOrderTime });
+
 				if (
 					workOrderTime.getHours() < hour &&
 					(!previousWorkOrder || workOrder.time > previousWorkOrder.time)
