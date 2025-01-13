@@ -25,48 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Add event listeners to all empty time slots
 	document.querySelectorAll('.time-slot.empty').forEach(function (slot) {
 		slot.addEventListener('click', function () {
-			// Get the hour and technician ID from the clicked slot
-			var hour = this.getAttribute('data-hour');
-			var technicianId = this.getAttribute('data-technician-id');
-
-			// Access the work orders from the global JavaScript variable
-			var workOrders = window.workOrdersByTechnician;
-
-			// Find the previous and next work orders for the selected technician
-			var technicianWorkOrders = workOrders[technicianId] || [];
-			var previousWorkOrder = null;
-			var nextWorkOrder = null;
-
-			technicianWorkOrders.forEach(function (workOrder, index) {
-				var workOrderTime = new Date(workOrder.time);
-
-				if (
-					workOrderTime.getHours() < hour &&
-					(!previousWorkOrder || workOrder.time > previousWorkOrder.time)
-				) {
-					previousWorkOrder = workOrder;
-				}
-				if (
-					workOrderTime.getHours() > hour &&
-					(!nextWorkOrder || workOrder.time < nextWorkOrder.time)
-				) {
-					nextWorkOrder = workOrder;
-				}
-			});
-
-			// Calculate the available time in minutes
-			var availableTime = 0;
-			if (previousWorkOrder && nextWorkOrder) {
-				var previousEndTime = new Date(previousWorkOrder.time);
-				previousEndTime.setMinutes(
-					previousEndTime.getMinutes() + previousWorkOrder.duration
-				);
-				var nextStartTime = new Date(nextWorkOrder.time);
-				availableTime = Math.max(0, (nextStartTime - previousEndTime) / 60000); // Difference in minutes
-			}
-
-			// Show the available time in a popup
-			alert('Available time: ' + availableTime + ' minutes');
+			alert(
+				`How much time is available between the previous and next work orders goes here.`
+			);
 		});
 	});
 });
