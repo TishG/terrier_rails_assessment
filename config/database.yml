@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['POSTGRES_USERNAME'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  username: <%= ENV['POSTGRES_USERNAME_Local'] %>
+  password: <%= ENV['POSTGRES_PASSWORD_LOCAL'] %>
   host: localhost
   port: 5432
   database: terrier_rails_assessment_db
