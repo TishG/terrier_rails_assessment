@@ -10,22 +10,44 @@ The application was designed with a focus on simplicity and clarity, adhering to
 
    ```bash
    git clone https://github.com/TishG/terrier_rails_assessment.git
-   cd terrier_rails_assessment
-
    ```
 
-2. Install Dependencies:
+2. cd into project
+
+   ```bash
+   cd terrier_rails_assessment
+   ```
+
+3. Install Dependencies:
+
+   ```bash
    bundle install
+   ```
 
-3. Set up the database:
+4. Set up the database:
+
+   ```bash
    rails db:drop RAILS_ENV=development
+   ```
+
+   ```bash
    rails db:create RAILS_ENV=development
+   ```
+
+   ```bash
    rails db:migrate RAILS_ENV=development
+   ```
 
-4. Import CSV data:
+5. Import CSV data:
+
+   ```bash
    rake csv:import
+   ```
 
-5. Start the Rails server:
+6. Start the Rails server:
+
+   ```bash
    rails server
+   ```
 
-6. Access the application at http://localhost:3000/schedules.
+7. Access the application at http://localhost:3000/schedules.
